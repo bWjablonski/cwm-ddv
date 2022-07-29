@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.schemas import get_schema_view
 
 from v1.views import TaskViewSet, LinkViewSet
 
@@ -28,4 +29,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("djoser.urls.authtoken")),
     path("", include(router.urls)),
+    path('openapi', get_schema_view(
+        title="Your Project",
+        description="API for all things …",
+        version="1.0.0"
+    ), name='openapi-schema'),
 ]

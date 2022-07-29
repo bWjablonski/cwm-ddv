@@ -13,11 +13,13 @@
                            <v-text-field
                               prepend-icon="mdi-account"
                               name="login"
+                              v-model="login"
                               label="Login"
                               type="text"
                            ></v-text-field>
                            <v-text-field
                               id="password"
+                              v-model="password"
                               prepend-icon="mdi-lock"
                               name="password"
                               label="Password"
@@ -27,7 +29,7 @@
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" to="/">Login</v-btn>
+                        <v-btn color="primary" @click="submit">Login</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -38,8 +40,30 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-   name: 'LoginForm'
+   name: 'LoginForm',
+  data: () => { return { login: null, password: null } },
+  mounted: function () {
+    if(this.$store.getters.isAuthenticated){
+      this.$router.push("/");
+    }
+  },
+  methods: {
+    ...mapActions(["LogIn"]),
+    async submit() {
+      const User = new FormData();
+      User.append("username", this.login);
+      User.append("password", this.password);
+      try {
+        await this.LogIn(User);
+        this.$router.push("/");
+        this.showError = false
+      } catch (error) {
+        this.showError = true
+      }
+    },
+  }
 };
 </script>
 

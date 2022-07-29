@@ -11,6 +11,9 @@ Django = "^4.0.6"
 django-admin = "^2.0.1"
 djoser = "^2.1.0"
 black = "^22.6.0"
+django-cors-headers = "^3.13.0"
+pyyaml = "^6.0"
+uritemplate = "^4.1.1"
 
 [tool.poetry.dev-dependencies]
 
