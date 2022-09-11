@@ -57,10 +57,9 @@ export default {
       User.append("password", this.password);
       try {
         await this.LogIn(User);
-        this.$router.push("/");
-        this.showError = false
+        await this.$router.push("/");
       } catch (error) {
-        this.showError = true
+        console.log(error);
       }
     },
   }

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.schemas import get_schema_view
+from rest_framework.renderers import CoreJSONRenderer
 
 from v1.views import TaskViewSet, LinkViewSet
 
@@ -31,6 +32,7 @@ urlpatterns = [
     path("", include(router.urls)),
     path('openapi', get_schema_view(
         title="Your Project",
+        renderer_classes=[CoreJSONRenderer],
         description="API for all things …",
         version="1.0.0"
     ), name='openapi-schema'),
