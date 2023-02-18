@@ -2,4 +2,5 @@ Nothing but a simple project where dashboard is built dynamically based on openA
 Django & DRF for API
 Djoser for auth
 Vue2 + Vuetify as frontend
-[img/s.png]
+
+![Screenshot](s.png)
